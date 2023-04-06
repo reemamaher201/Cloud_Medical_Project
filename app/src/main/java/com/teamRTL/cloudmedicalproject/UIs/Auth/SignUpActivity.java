@@ -1,4 +1,4 @@
-package com.teamRTL.cloudmedicalproject.UIs;
+package com.teamRTL.cloudmedicalproject.UIs.Auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.teamRTL.cloudmedicalproject.R;
 
-public class SignUp extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

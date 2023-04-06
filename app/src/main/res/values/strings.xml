@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Cloud Medical Project</string>
+    <string name="medical_app">الرعاية الطبية</string>
+    <string name="welcome_back">مرحبا بك !</string>
+    <string name="sign_up">انشاء حساب</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="login_with_social_media">سجل بواسطة السوشيال ميديا</string>
+    <string name="hello_sign_in">تسجيل الدخول</string>
+    <string name="forget_pass">نسيت كلمة المرور ؟</string>
+    <string name="dont_have_account">ليس لدي حساب ؟</string>
+    <string name="enter_password">ادخل كلمة المرور</string>
+    <string name="enter_email">ادخل الايميل</string>
+    <string name="enter_name">ادخل الاسم ثلاثي</string>
+    <string name="enter_birthdate">ادخل تاريخ ميلادك</string>
+    <string name="enter_mobile">ادخل رقم الجوال</string>
+    <string name="enter_address">ادخل العنوان</string>
+    <string name="enter_confirm_password">ادخل تاكيد كلمة المرور</string>
 </resources>
