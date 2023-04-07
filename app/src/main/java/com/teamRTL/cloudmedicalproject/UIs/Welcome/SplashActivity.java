@@ -1,4 +1,4 @@
-package com.teamRTL.cloudmedicalproject.UIs;
+package com.teamRTL.cloudmedicalproject.UIs.Welcome;
 
 import androidx.appcompat.app.AppCompatActivity;
 

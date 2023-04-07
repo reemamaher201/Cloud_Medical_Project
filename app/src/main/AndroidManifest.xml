@@ -12,7 +12,7 @@
         android:theme="@style/Theme.CloudMedicalProject"
         tools:targetApi="31">
         <activity
-            android:name=".UIs.OnBoardingActivity"
+            android:name=".UIs.Welcome.OnBoardingActivity"
             android:exported="false" />
         <activity
             android:name=".UIs.Auth.SignUpActivity"
@@ -24,7 +24,7 @@
             android:name=".UIs.Auth.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".UIs.SplashActivity"
+            android:name=".UIs.Welcome.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
