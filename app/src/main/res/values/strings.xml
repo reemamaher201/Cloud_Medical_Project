@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Cloud Medical Project</string>
-    <string name="medical_app">الرعاية الطبية</string>
-    <string name="welcome_back">مرحبا بك !</string>
+    <string name="medical_app">الرعاية التلطيفية</string>
+    <string name="welcome_back">أهلا بك !</string>
     <string name="sign_up">انشاء حساب</string>
     <string name="login">تسجيل الدخول</string>
     <string name="login_with_social_media">سجل بواسطة السوشيال ميديا</string>
