@@ -60,10 +60,9 @@ public class OnBoardingActivity extends AppCompatActivity {
 
         //fill list screen
         List<OnBoadringItem> bList = new ArrayList<>();
-        bList.add(new OnBoadringItem("طاقم طبي متكامل", "طاقم طبي متكامل ومتخصص في الرعاية  الصحية التلطيفية للمريض والقائمين على رعايته من ذويه بهدف الحد أو التخفيف من معاناتهم في مواجهة المرض.", R.drawable.b1));
-        bList.add(new OnBoadringItem("تواصل سهل و سريع", "إننا نعتمد على خبرتنا الممتازة والمتخصصة في الحفاظ على استمرارية التواصل مع المرضى وذويهم لتقديم خدمة رعاية تلطيفية سريعة في كل وقت.", R.drawable.b2));
         bList.add(new OnBoadringItem("الاهتمام و جدولة المواعيد", "إدارة كافة الخدمات المقدمة بسلاسة ودقة عالية تمنع حدوث الأخطاء بنسبة عالية جداً كما تساعد على تبسيط عناصر الرعاية الصحية لكل مريض وإدارة المواعيد الطبية لكل طبيب بعيداً عن استخدام السجلات الورقية المرهقة.", R.drawable.b3));
-
+        bList.add(new OnBoadringItem("تواصل سهل و سريع", "إننا نعتمد على خبرتنا الممتازة والمتخصصة في الحفاظ على استمرارية التواصل مع المرضى وذويهم لتقديم خدمة رعاية تلطيفية سريعة في كل وقت.", R.drawable.b2));
+        bList.add(new OnBoadringItem("طاقم طبي متكامل", "طاقم طبي متكامل ومتخصص في الرعاية  الصحية التلطيفية للمريض والقائمين على رعايته من ذويه بهدف الحد أو التخفيف من معاناتهم في مواجهة المرض.", R.drawable.b1));
         //setup viewpager
         screenPager = findViewById(R.id.screen_viewpager);
         onBoardingAdapter = new OnBoardingAdapter(this, bList);
