@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "463665446404",
+    "project_id": "cloudmedicalproject",
+    "storage_bucket": "cloudmedicalproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463665446404:android:7d8d76d0c70a34b49d7f51",
+        "android_client_info": {
+          "package_name": "com.teamRTL.cloudmedicalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "463665446404-ordnd0e4evtvr133pd6v0l3cvi2o6891.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDDAYdLSEYACsEtzaA5ghqRvxPk2y_ieU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "463665446404-ordnd0e4evtvr133pd6v0l3cvi2o6891.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
