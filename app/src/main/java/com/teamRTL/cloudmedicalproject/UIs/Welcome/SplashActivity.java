@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
 
         //hide the action bar
 
-        getSupportActionBar().hide();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   >
+
+    <item
+        android:id="@+id/profile"
+        android:title="@string/profile"
+        android:icon="@drawable/ic_baseline_person_24">
+
+    </item>
+
+    <item
+        android:id="@+id/doctors"
+        android:title="@string/doctors"
+        android:icon="@drawable/doctor">
+
+    </item>
+    <item
+        android:id="@+id/find_friend"
+        android:title="ابحث عن صديق"
+        android:icon="@drawable/baseline_person_search_24">
+
+    </item>
+
+    <item
+    android:id="@+id/contacts"
+    android:title="جهات الاتصال"
+    android:icon="@drawable/users">
+
+</item>
+    <item
+        android:id="@+id/chat"
+        android:title="@string/chat"
+        android:icon="@drawable/baseline_chat_24">
+
+    </item>
+
+
+    <item
+        android:id="@+id/others"
+        android:title="@string/others" >
+        <menu>
+            <item
+                android:id="@+id/settings"
+                android:title="@string/settings"
+                android:icon="@drawable/baseline_settings_24">
+
+            </item>
+            <item
+                android:id="@+id/about"
+                android:title="@string/about"
+                android:icon="@drawable/about">
+
+            </item>
+            <item
+                android:id="@+id/logout"
+                android:title="@string/logout"
+                android:icon="@drawable/baseline_logout_24">
+
+            </item>
+        </menu>
+    </item>
+</menu>

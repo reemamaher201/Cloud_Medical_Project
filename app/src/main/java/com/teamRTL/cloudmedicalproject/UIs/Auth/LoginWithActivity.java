@@ -10,25 +10,19 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.teamRTL.cloudmedicalproject.R;
+import com.teamRTL.cloudmedicalproject.databinding.ActivityLoginWithBinding;
 
 public class LoginWithActivity extends AppCompatActivity {
-    AppCompatButton  btn_login,btn_signup;
-    ImageView facebook,instagram,twitter;
+private ActivityLoginWithBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_with);
-        getSupportActionBar().hide();
+        binding = ActivityLoginWithBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        //initializing button
-        btn_login = findViewById(R.id.btn_login);
-        btn_signup = findViewById(R.id.btn_signup);
-        facebook = findViewById(R.id.facebook);
-        instagram =findViewById(R.id.instegram);
-        twitter = findViewById(R.id.twitter);
 
         //login button forward you to login page
-        btn_login.setOnClickListener(new View.OnClickListener() {
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginWithActivity.this,LoginActivity.class));
@@ -36,7 +30,7 @@ public class LoginWithActivity extends AppCompatActivity {
         });
 
             //signup button forward you to signup page
-        btn_signup.setOnClickListener(new View.OnClickListener() {
+        binding.btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginWithActivity.this,SignUpActivity.class));
@@ -44,7 +38,7 @@ public class LoginWithActivity extends AppCompatActivity {
         });
 
         //instagram button forward
-        instagram.setOnClickListener(new View.OnClickListener() {
+        binding.instagram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com")));
@@ -53,7 +47,7 @@ public class LoginWithActivity extends AppCompatActivity {
 
 
         //twitter button forward
-        twitter.setOnClickListener(new View.OnClickListener() {
+        binding.twitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com")));
@@ -62,7 +56,7 @@ public class LoginWithActivity extends AppCompatActivity {
 
 
         //facebook button forward
-        facebook.setOnClickListener(new View.OnClickListener() {
+        binding.facebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://facebook.com")));

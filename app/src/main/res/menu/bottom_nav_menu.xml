@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/homeFrag"
+        android:title="الرئيسية"
+        android:icon="@drawable/baseline_home_24">
+
+    </item>
+    <item
+    android:id="@+id/profileFrag"
+    android:title="@string/profile"
+    android:icon="@drawable/ic_person">
+
+</item>
+    <item
+        android:id="@+id/fabFrag"
+        android:title=""
+        android:enabled="false"
+        >
+
+    </item>
+
+    <item
+        android:id="@+id/chatFrag"
+        android:title="@string/chat"
+        android:icon="@drawable/ic_chat">
+
+    </item>
+    <item
+        android:id="@+id/moreFrag"
+        android:title="المزيد"
+        android:icon="@drawable/ic_more">
+
+    </item>
+
+
+</menu>

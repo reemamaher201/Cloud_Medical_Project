@@ -29,8 +29,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/name"
+            android:id="@+id/nameSignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -42,7 +43,7 @@
             android:hint="@string/enter_name"
             android:imeOptions="actionNext"
             android:inputType="text"
-            android:maxLength="15"
+            android:maxLength="45"
             android:minHeight="48dp"
             android:padding="10dp"
             android:textColor="@android:color/black"
@@ -73,7 +74,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintTop_toBottomOf="@+id/nameSignup" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/address"
@@ -83,7 +84,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="32dp"
             android:backgroundTint="@color/main_color"
-            android:drawableRight="@drawable/ic_baseline_location_on_24"
+            android:drawableRight="@drawable/baseline_add_location_24"
             android:drawablePadding="5dp"
             android:hint="@string/enter_address"
             android:imeOptions="actionNext"
@@ -112,7 +113,7 @@
             android:hint="@string/enter_email"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
-            android:maxLength="15"
+            android:maxLength="30"
             android:minHeight="48dp"
             android:padding="10dp"
             android:textColor="@android:color/black"
@@ -130,7 +131,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="32dp"
             android:backgroundTint="@color/main_color"
-            android:drawableRight="@drawable/ic_baseline_person_24"
+            android:drawableRight="@drawable/ic_baseline_phone_android_24"
             android:drawablePadding="5dp"
             android:hint="@string/enter_mobile"
             android:imeOptions="actionNext"
@@ -148,7 +149,7 @@
 
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/password"
+            android:id="@+id/passwordSign"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -191,23 +192,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordSign" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/signup"
-            android:fontFamily="@font/montserrat_semibold"
-            android:text="@string/login"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/doctorCheck" />
 
         <CheckBox
             android:id="@+id/doctorCheck"
@@ -232,6 +218,37 @@
             app:layout_constraintHorizontal_bias="0.766"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/confirm_password" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:animateLayoutChanges="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/doctorCheck">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/signup"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/login"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                 />
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:visibility="invisible"/>
+
+        </FrameLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

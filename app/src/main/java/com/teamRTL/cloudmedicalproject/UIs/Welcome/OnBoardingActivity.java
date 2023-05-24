@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,10 +28,11 @@ public class OnBoardingActivity extends AppCompatActivity {
     private ViewPager screenPager;
     OnBoardingAdapter onBoardingAdapter;
     TabLayout tabIndicator;
-    TextView btnNext;
+    TextView btnNext ,skip;
     int position = 0;
     TextView btnGetStarted;
     Animation btnAnim;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +52,10 @@ public class OnBoardingActivity extends AppCompatActivity {
 
         //hide the action bar
 
-        getSupportActionBar().hide();
+
 
         //initializing
+        skip = findViewById(R.id.skip);
         tabIndicator = findViewById(R.id.tab_indicator);
         btnNext = findViewById(R.id.btn_next);
         btnGetStarted= findViewById(R.id.btn_getStarted);
@@ -86,15 +89,15 @@ public class OnBoardingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 position = screenPager.getCurrentItem();
-                if (position < bList.size()) {
-                    position++;
+                if (-position < bList.size()) {
+                    position--;
                     screenPager.setCurrentItem(position);
                 }
-
+                Log.e("pos", String.valueOf(position));
                 //when we reach to the last screen
 
-                if (position == bList.size()-1) {
-
+                if (position == 0) {
+                    Log.e("po", String.valueOf(position));
                     //TODO : show the GetStarted button and hide the indicator and the next button
 
                     loadLastScreen();
@@ -108,8 +111,8 @@ public class OnBoardingActivity extends AppCompatActivity {
         tabIndicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
-                if(tab.getPosition() == bList.size()-1){
+                Log.e("tab", String.valueOf(tab.getPosition()));
+                if(tab.getPosition() == 0){
                     loadLastScreen();
                 }
 
@@ -144,6 +147,14 @@ public class OnBoardingActivity extends AppCompatActivity {
 
                 savePrefsData();
                 finish();
+            }
+        });
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logIntent = new Intent(getApplicationContext(), LoginWithActivity.class);
+                startActivity(logIntent);
             }
         });
 

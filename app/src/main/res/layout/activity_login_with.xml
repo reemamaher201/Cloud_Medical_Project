@@ -97,7 +97,7 @@
                 tools:layout_editor_absoluteY="558dp" />
 
             <ImageView
-                android:id="@+id/instegram"
+                android:id="@+id/instagram"
                 android:layout_marginStart="10dp"
 
                 android:layout_width="wrap_content"
