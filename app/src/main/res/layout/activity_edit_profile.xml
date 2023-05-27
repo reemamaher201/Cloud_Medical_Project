@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/hh"
     android:layout_height="match_parent"
     android:paddingBottom="15dp"
     tools:context=".UIs.MoreActivities.EditProfileActivity">
@@ -11,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nav_header"
         android:layout_width="match_parent"
-        android:layout_height="202dp"
+        android:layout_height="219dp"
         android:background="@drawable/header_gradiant_anim"
         android:paddingBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +21,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
-
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="24dp"
+            android:padding="2dp"
+            android:rotation="180"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
+            app:tint="@color/white" />
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/EditeProfileImage"
             android:layout_width="100dp"
@@ -35,7 +47,9 @@
             app:riv_border_width="2dp"
             app:riv_oval="true" />
 
-        <TextView
+        <EditText
+            android:height="48dp"
+
             android:id="@+id/EditeProfileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +89,6 @@
             app:layout_constraintTop_toBottomOf="@id/EditeProfileName" />
 
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -106,13 +119,14 @@
                 android:layout_marginEnd="10dp"
                 android:src="@drawable/ic_baseline_email_24" />
 
-            <TextView
+            <EditText
                 android:id="@+id/EditeProfileEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="reema@gmail.com"
                 android:textColor="@color/gray"
+                android:height="48dp"
                 android:textSize="@dimen/_14sdp" />
         </LinearLayout>
 
@@ -131,12 +145,14 @@
                 android:layout_marginEnd="10dp"
                 android:src="@drawable/ic_baseline_phone_android_24" />
 
-            <TextView
+            <EditText
                 android:id="@+id/EditeProfilePhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layoutDirection="ltr"
+                android:height="48dp"
+
                 android:text="+970 59 9999 999"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_14sdp" />
@@ -157,7 +173,7 @@
                 android:layout_marginEnd="10dp"
                 android:src="@drawable/ic_baseline_date_range_24" />
 
-            <TextView
+            <EditText
                 android:id="@+id/EditeProfileDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -182,12 +198,14 @@
                 android:layout_marginEnd="10dp"
                 android:src="@drawable/ic_baseline_location_on_24" />
 
-            <TextView
+            <EditText
                 android:id="@+id/EditeProfileAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="غزة الشفاء "
+                android:height="48dp"
+
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_14sdp" />
 
@@ -208,7 +226,9 @@
                 android:layout_marginEnd="10dp"
                 android:src="@drawable/doctor" />
 
-            <TextView
+            <EditText
+                android:height="48dp"
+
                 android:id="@+id/EditeProfileSp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -247,5 +267,16 @@
         app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

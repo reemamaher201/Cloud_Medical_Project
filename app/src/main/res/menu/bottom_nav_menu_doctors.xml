@@ -3,33 +3,33 @@
 
 
     <item
-        android:id="@+id/homeFrag"
+        android:id="@+id/homeFragDoc"
         android:title="الرئيسية"
         android:icon="@drawable/baseline_home_24">
 
     </item>
     <item
-    android:id="@+id/profileFrag"
-    android:title="@string/profile"
-    android:icon="@drawable/ic_person">
+        android:id="@+id/profileFragDoc"
+        android:title="@string/profile"
+        android:icon="@drawable/ic_person">
 
-</item>
-
+    </item>
     <item
-        android:id="@+id/fabFrag"
+        android:id="@+id/fabFragDoc"
         android:title=""
         android:enabled="false"
         >
 
     </item>
+
     <item
-        android:id="@+id/chatFrag"
+        android:id="@+id/chatFragDoc"
         android:title="@string/chat"
         android:icon="@drawable/ic_chat">
 
     </item>
     <item
-        android:id="@+id/moreFrag"
+        android:id="@+id/moreFragDoc"
         android:title="المزيد"
         android:icon="@drawable/ic_more">
 

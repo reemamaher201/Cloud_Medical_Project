@@ -23,27 +23,30 @@ import com.teamRTL.cloudmedicalproject.Fragments.HomeFragment;
 import com.teamRTL.cloudmedicalproject.Fragments.MoreFragment;
 import com.teamRTL.cloudmedicalproject.Fragments.ProfileFragment;
 import com.teamRTL.cloudmedicalproject.UIs.Auth.LoginActivity;
+import com.teamRTL.cloudmedicalproject.UIs.doctors.ShowArticlesActivity;
 import com.teamRTL.cloudmedicalproject.databinding.ActivityMainBinding;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private FirebaseUser firebaseUser;
-    private DatabaseReference databaseReference;
-    String value;
+    private DatabaseReference reference;
+    private boolean isActivityRunning = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-Intent intent = getIntent();
-        String p = intent.getStringExtra("p");
-        String d = intent.getStringExtra("d");
-        if (value == p){
-            binding.fab.setVisibility(View.GONE);
-        }else if (value == d){
-            binding.fab.setVisibility(View.VISIBLE);
-        }
+
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ShowArticlesActivity.class);
+                startActivity(intent);
+            }
+        });
 
         binding.bottomNav.setBackground(null);
         replaceFragment(new HomeFragment());
@@ -73,22 +76,42 @@ Intent intent = getIntent();
     @Override
     protected void onStart() {
         super.onStart();
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        isActivityRunning = true;
         if (firebaseUser == null) {
             sendUserToLoginActivity();
         } else {
-            VerifyUserExistence();
+            checkUserExistence();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            status("online");
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            status("offline");
         }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        isActivityRunning = false;
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if (firebaseUser != null) {
-            //updateUserStatus("offline");
+            status("offline");
         }
     }
 
@@ -97,7 +120,7 @@ Intent intent = getIntent();
         super.onDestroy();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
-            //updateUserStatus("offline");
+            status("offline");
         }
     }
 
@@ -115,30 +138,64 @@ Intent intent = getIntent();
         finish();
     }
 
-    private void VerifyUserExistence() {
+    private void checkUserExistence() {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
             String userId = firebaseUser.getUid();
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("Doctors").child(userId);
-            databaseReference.addValueEventListener(new ValueEventListener() {
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Patients").child(userId);
+            userRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.child("name").exists()) {
-                        Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Welcome " + firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
+                        binding.fab.setVisibility(View.GONE); // إخفاء العنصر إذا كان المستخدم مريضًا
                     } else {
-                        sendUserToSettingsActivity();
+                        DatabaseReference doctorRef = FirebaseDatabase.getInstance().getReference().child("Doctors").child(userId);
+                        doctorRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()) {
+                                    binding.fab.setVisibility(View.VISIBLE); // إظهار العنصر إذا كان المستخدم طبيبًا
+                                    Intent intent = new Intent(MainActivity.this, HomeFragment.class);
+                                    intent.putExtra("isDoctor", true);
+                                    replaceFragment(new HomeFragment());
+                                } else {
+                                    binding.fab.setVisibility(View.GONE);
+                                    Intent intent = new Intent(MainActivity.this, HomeFragment.class);
+                                    intent.putExtra("isDoctor", false);// إخفاء العنصر في الحالة الأخرى
+                                    replaceFragment(new HomeFragment());
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // التعامل مع أخطاء قاعدة البيانات
+                            }
+                        });
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Handle database error
+                    // التعامل مع أخطاء قاعدة البيانات
                 }
             });
         }
     }
 
     private void sendUserToSettingsActivity() {
-        // Implement your logic to navigate to the settings activity
+        // قم بتنفيذ منطقك للانتقال إلى شاشة الإعدادات
+        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+        loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(loginIntent);
+        finish();
     }
+
+    private void status(String status) {
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", status);
+        reference.updateChildren(hashMap);
+    }
+
 }

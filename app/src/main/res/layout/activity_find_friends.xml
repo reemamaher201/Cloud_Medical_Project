@@ -10,7 +10,7 @@
         layout="@layout/bar_layout"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/friendsUsersRyc"
+        android:id="@+id/users_rcy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="1dp"

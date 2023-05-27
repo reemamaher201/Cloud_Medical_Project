@@ -14,13 +14,12 @@
 
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image_pat1"
+        android:id="@+id/image_p1"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:scaleType="fitXY"
-        android:src="@drawable/doctor_ann_marie_navar_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/roundedImage"
@@ -33,16 +32,16 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/notosansarabic_bold"
-        android:text="اسم الطبيب"
+        android:text="اسم المريض"
         android:textStyle="bold"
         android:textColor="@color/main_color"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/image_doctor1"
+        app:layout_constraintEnd_toStartOf="@+id/image_p1"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
-        android:id="@+id/located"
+        android:id="@+id/locatet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -53,7 +52,7 @@
         android:gravity="center"
         android:textColor="@color/main_color"
         android:textSize="13sp"
-        app:layout_constraintEnd_toStartOf="@+id/image_doctor1"
+        app:layout_constraintEnd_toStartOf="@+id/image_p1"
         app:layout_constraintTop_toBottomOf="@+id/patient_name"
         app:drawableEndCompat="@drawable/ic_baseline_location_on_24" />
 

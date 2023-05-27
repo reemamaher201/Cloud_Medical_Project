@@ -44,6 +44,7 @@ public class DoctorsAdapter extends RecyclerView.Adapter<DoctorsAdapter.ViewHold
         holder.username.setText(doctors.getName());
         holder.doctor_major.setText(doctors.getSpecialistIn());
 
+
         if (doctors.getImage() != null && !doctors.getImage().isEmpty()) {
             Glide.with(mContext).load(doctors.getImage()).into(holder.profile_image);
         } else {

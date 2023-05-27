@@ -21,15 +21,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.teamRTL.cloudmedicalproject.UIs.MoreActivities.AboutActivity;
 import com.teamRTL.cloudmedicalproject.Adapters.MoreAdapter;
 import com.teamRTL.cloudmedicalproject.Models.Item;
 import com.teamRTL.cloudmedicalproject.UIs.MoreActivities.NotificationActivity;
 import com.teamRTL.cloudmedicalproject.R;
 import com.teamRTL.cloudmedicalproject.UIs.Auth.LoginActivity;
-import com.teamRTL.cloudmedicalproject.UIs.MoreActivities.ContactsActivity;
 import com.teamRTL.cloudmedicalproject.UIs.MoreActivities.FindFriendsActivity;
-import com.teamRTL.cloudmedicalproject.UIs.MoreActivities.RequestsActivity;
+import com.teamRTL.cloudmedicalproject.UIs.doctors.DoctorsActivity;
+import com.teamRTL.cloudmedicalproject.UIs.patients.PatientsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,26 +61,23 @@ public class MoreFragment extends Fragment {
 
                 switch (position){
                     case 0:
-                        Intent intent0 = new Intent(getActivity(), ContactsActivity.class);
+                        Intent intent0 = new Intent(getActivity(), DoctorsActivity.class);
                         startActivity(intent0);
                         break;
                     case 1:
                         Intent intent1 = new Intent(getActivity(), FindFriendsActivity.class);
                         startActivity(intent1);
                         break;
+
                     case 2:
-                        Intent intent2 = new Intent(getActivity(), RequestsActivity.class);
-                        startActivity(intent2);
-                        break;
-                    case 3:
                         Intent intent3 = new Intent(getActivity(), NotificationActivity.class);
                         startActivity(intent3);
                         break;
-                    case 4:
-                        Intent intent4 = new Intent(getActivity(), AboutActivity.class);
+                    case 3:
+                        Intent intent4 = new Intent(getActivity(), PatientsActivity.class);
                         startActivity(intent4);
                         break;
-                    case 5:
+                    case 4:
                         openDialog();
                         break;
                 }
@@ -100,30 +96,26 @@ public class MoreFragment extends Fragment {
 
         // Add your items to the list
 
-        itemList.add(new Item("جهات الاتصال",R.drawable.users));
-        itemList.add(new Item("أضف جهة اتصال",R.drawable.baseline_person_search_24));
-        itemList.add(new Item("الطلبات المرسلة",R.drawable.add_friends));
+
+        itemList.add(new Item("الأطباء",R.drawable.doctor));
+        itemList.add(new Item("قائمة الاتصالات",R.drawable.baseline_person_search_24));
         itemList.add(new Item("الاشعارات",R.drawable.baseline_notifications_24));
-        itemList.add(new Item("من نحن",R.drawable.about));
+        itemList.add(new Item("المرضى",R.drawable.users));
         itemList.add(new Item("تسجيل خروج",R.drawable.baseline_logout_24));
         return itemList;
     }
 
 
     private void openDialog(){
-
             // إنشاء مربع الحوار
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setView(R.layout.logout_dialog);
             AlertDialog dialog = builder.create();
-
             // عرض مربع الحوار
             dialog.show();
-
             // استرجاع مراجع الأزرار بعد عرض مربع الحوار
             cancelButton = dialog.findViewById(R.id.cancel);
             logoutButton = dialog.findViewById(R.id.out);
-
             // إضافة استمع النقر لزر الإلغاء
             cancelButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -132,7 +124,6 @@ public class MoreFragment extends Fragment {
                     dialog.dismiss();
                 }
             });
-
             // إضافة استمع النقر لزر تسجيل الخروج
             logoutButton.setOnClickListener(new View.OnClickListener() {
                 @Override

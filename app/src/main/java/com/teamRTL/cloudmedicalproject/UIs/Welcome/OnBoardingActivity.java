@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.teamRTL.cloudmedicalproject.Adapters.OnBoardingAdapter;
+import com.teamRTL.cloudmedicalproject.MainActivity;
 import com.teamRTL.cloudmedicalproject.Models.OnBoadringItem;
 import com.teamRTL.cloudmedicalproject.R;
 import com.teamRTL.cloudmedicalproject.UIs.Auth.LoginWithActivity;
@@ -43,7 +44,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         //when this activity is about to be launch we need to check if its opened before or not
 
         if(restorePrefData()){
-            Intent intent = new Intent(getApplicationContext(),LoginWithActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -136,7 +137,7 @@ public class OnBoardingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //open login with Activity
 
-                Intent logIntent = new Intent(getApplicationContext(), LoginWithActivity.class);
+                Intent logIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(logIntent);
 
                 /*
@@ -153,7 +154,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent logIntent = new Intent(getApplicationContext(), LoginWithActivity.class);
+                Intent logIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(logIntent);
             }
         });

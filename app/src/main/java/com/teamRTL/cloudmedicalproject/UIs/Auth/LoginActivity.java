@@ -25,7 +25,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.teamRTL.cloudmedicalproject.MainActivity;
+
 import com.teamRTL.cloudmedicalproject.R;
 import com.teamRTL.cloudmedicalproject.databinding.ActivityLoginBinding;
 
@@ -35,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth auth;
     ProgressDialog progressDialog;
     private ActivityLoginBinding binding;
+    DatabaseReference doctorsRef;
+    DatabaseReference patientsRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +51,14 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         auth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-
+        doctorsRef = FirebaseDatabase.getInstance().getReference("Doctors");
+        patientsRef = FirebaseDatabase.getInstance().getReference("Patients");
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //trim()  removes all the leading and trailing spaces in the string
-
                 String email = Objects.requireNonNull(binding.emailLogin.getText()).toString().trim();
                 String password = Objects.requireNonNull(binding.passwordLogin.getText()).toString().trim();
 
@@ -61,9 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 progressDialog.cancel();
-                                Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
+                                checkUserType(authResult.getUser());
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -72,14 +77,12 @@ public class LoginActivity extends AppCompatActivity {
                                 progressDialog.cancel();
                                 Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                 Log.e("error",e.getMessage());
-
                             }
                         });
-
-
             }
         });
 
+        // Forget password functionality
         binding.forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,15 +125,33 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-        //Do not have an account forward you to sign up page
+        // Redirect to sign up page
         binding.dontHaveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
+    }
 
+    private void checkUserType(FirebaseUser user) {
+        String userId = user.getUid();
+        doctorsRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // المستخدم هو طبيب
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                } else {
+                    // المستخدم هو مريض
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // إدارة الأخطاء إذا حدثت
+            }
+        });
     }
 }

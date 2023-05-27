@@ -20,7 +20,6 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:scaleType="fitXY"
-        android:src="@drawable/doctor_ann_marie_navar_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/roundedImage"

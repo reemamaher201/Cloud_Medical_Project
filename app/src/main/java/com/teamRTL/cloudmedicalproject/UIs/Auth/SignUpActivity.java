@@ -32,8 +32,8 @@ import com.teamRTL.cloudmedicalproject.MainActivity;
 import com.teamRTL.cloudmedicalproject.Models.Doctors;
 import com.teamRTL.cloudmedicalproject.Models.Patients;
 
+import com.teamRTL.cloudmedicalproject.Models.Users;
 import com.teamRTL.cloudmedicalproject.R;
-import com.teamRTL.cloudmedicalproject.UIs.doctors.DoctorsActivity;
 import com.teamRTL.cloudmedicalproject.databinding.ActivitySignUpBinding;
 
 
@@ -47,7 +47,7 @@ import java.util.Objects;
 public class SignUpActivity extends AppCompatActivity {
     private ActivitySignUpBinding binding;
     FirebaseAuth auth;
-    DatabaseReference reference;
+    DatabaseReference reference,reference1;
     String name, date, address, password, email, phone;
     ProgressDialog progressDialog;
 
@@ -107,7 +107,6 @@ public class SignUpActivity extends AppCompatActivity {
     private void userDate() {
         // Create a Calendar object to store the selected date
         Calendar calendar = Calendar.getInstance();
-
 // Create a DatePickerDialog and set its OnDateSetListener
         DatePickerDialog datePickerDialog = new DatePickerDialog(SignUpActivity.this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -128,7 +127,6 @@ public class SignUpActivity extends AppCompatActivity {
 
 // Set the maximum date to today's date
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-
 // Show the DatePickerDialog
         datePickerDialog.show();
     }
@@ -160,6 +158,9 @@ public class SignUpActivity extends AppCompatActivity {
                             String userUid = firebaseUser.getUid();
                             if (binding.doctorCheck.isChecked()) {
                                 reference = FirebaseDatabase.getInstance().getReference("Doctors").child(userUid);
+                                reference1 = FirebaseDatabase.getInstance().getReference("Users").child(userUid);
+                                Users users = new Users(userUid,name,"",email) ;
+                               reference1.setValue(users);
                                 Doctors doctors = new Doctors(userUid, name, date, address, email, phone, "", "");
                                 reference.setValue(doctors).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -168,7 +169,7 @@ public class SignUpActivity extends AppCompatActivity {
                                             progressDialog.cancel();
                                             Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                            intent.putExtra("Doctors",0);
+                                            intent.putExtra("Doctors",firebaseUser.getEmail());
                                             Log.e("d",intent.toString());
                                             startActivity(intent);
                                             finish();
@@ -179,6 +180,9 @@ public class SignUpActivity extends AppCompatActivity {
 
                             } else if (binding.patientCheck.isChecked()) {
                                 reference = FirebaseDatabase.getInstance().getReference("Patients").child(userUid);
+                                reference1 = FirebaseDatabase.getInstance().getReference("Users").child(userUid);
+                                Users users = new Users(userUid,name,"",email) ;
+                                reference1.setValue(users);
                                 Patients patients = new Patients(userUid, name, date, address, email, phone,"");
                                 reference.setValue(patients).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -187,7 +191,7 @@ public class SignUpActivity extends AppCompatActivity {
                                             progressDialog.cancel();
                                             Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                            intent.putExtra("Patients",1);
+                                            intent.putExtra("Patients",firebaseUser.getEmail());
                                             Log.e("p",intent.toString());
                                             startActivity(intent);
                                             finish();
@@ -201,6 +205,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                         } else {
                             Toast.makeText(SignUpActivity.this, "signup failed", Toast.LENGTH_SHORT).show();
+                            Log.e("ffff",task.toString());
                             progressDialog.cancel();
                         }
 
